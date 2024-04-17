@@ -29,7 +29,6 @@ O projeto utiliza um banco de dados SQLite, então não há necessidade de confi
 
 ### Usuários
 
-- `GET /usuarios`: Retorna uma lista de todos os usuários cadastrados.
 - `POST /registrar`: Cria um novo usuário.
 - `POST /login`: Realiza a autenticação do usuário e fornece um token de acesso.
 - `POST /logout`: Desconecta o usuário e adiciona o token à lista negra.
