@@ -9,6 +9,23 @@ Este sistema foi desenvolvido para ajudar pessoas a gerenciar seu estoque de for
 
 ## Requisitos
 
+Primeiro vamos criar um ambiente virtual para fazer a instalação das bibliotecas.
+
+Windows:
+`python -m venv venv`
+No macOS e Linux:
+`python3 -m venv venv`
+
+Após executar o comando, uma nova pasta com o nome do ambiente virtual será criada no diretório atual.
+Ative o ambiente virtual. Isso é feito executando um script específico dependendo do seu sistema operacional.
+
+Windows:
+`venv\Scripts\activate`
+No macOS e Linux:
+`source venv/bin/activate`
+
+Ao fazer isso, você notará que o prompt do terminal será prefixado com o nome do seu ambiente virtual, indicando que está ativo.
+
 Certifique-se de ter o Python instalado em sua máquina. Você pode instalar as dependências do projeto executando:
 
 `pip install -r requirements.txt`
