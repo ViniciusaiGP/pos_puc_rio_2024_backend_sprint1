@@ -13,9 +13,8 @@ from model.usuario import UserModel
 from schemas.error import ErrorAuthorizationSchema, ErrorSchema, ServerErrorSchema
 from schemas.nota import ListagemNotaSchema, NotaSchema
 from schemas.produto import ListagemProdutosSchema, ProdutoViewSchema 
-from schemas.usuario import LoginRepSchema, LoginSchema, LogoutSchema, RegisterSchema
+from schemas.usuario import ListagemUsuariosSchema, LoginRepSchema, LoginSchema, LogoutSchema, RegisterSchema
 from services.nota_fiscal_eletronica import NotaFiscalExtractor
-
 
 info = Info(title= "Implementação QRCode", 
             description= '''Essa implementação é a ideia inicial de criar um gererenciamento de stock com Leitura de QRCode gerada pelas comprar de mercado.
@@ -106,6 +105,19 @@ def post_produto(body:ProdutoViewSchema):
         return {"message": "Um erro ocorreu ao tentar salvar o produto."}, 500
 
     return produto.json(), 201
+
+@app.get('/usuarios', tags=[usuario_tag], responses={"200": ListagemUsuariosSchema, "400": ErrorSchema, "401": ErrorAuthorizationSchema, "500": ServerErrorSchema}, security=[{"Bearer Token": []}])
+@jwt_required()
+def get_users():
+    """ Lista de usuários.
+
+        Traz todos os usuários se tiver a chave de acesso.
+    """
+    try:
+        users = [users.json() for users in UserModel.query.all()]
+        return {'Users': users}, 200
+    except:
+        return {'error': 'Server error'}, 500
 
 @app.post('/registrar', tags=[usuario_tag])
 def post_usuario_novo(body:RegisterSchema):
